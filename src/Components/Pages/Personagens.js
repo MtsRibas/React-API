@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Header } from "./Components/Header/header";
+import Header from "../Header/Header"; 
 import styled from "styled-components";
 
 const Teste = styled.div`
@@ -120,4 +120,4 @@ export class Personagens extends React.Component {
       </>
     );
   }
-}
+}export default Personagens;

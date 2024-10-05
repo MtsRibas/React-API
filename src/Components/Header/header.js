@@ -19,7 +19,7 @@ const Link = styled.a`
   color: white;
 `;
 
-export class Header extends React.Component {
+class Header extends React.Component {
   render() {
     return (
       <>
@@ -29,15 +29,10 @@ export class Header extends React.Component {
             <li>
               <Link href="/">Personagens</Link>
             </li>
-            <li>
-              <Link href="/">Mundo</Link>
-            </li>
-            <li>
-              <Link href="/">Sla</Link>
-            </li>
           </Lista>
         </HEADER>
       </>
     );
   }
 }
+export default Header;
