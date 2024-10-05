@@ -1,40 +1,42 @@
-class App extends Component {
-  state = {
-    postagens: [],
-  };
+import React from "react";
+import { Header } from "./Components/Header/header";
+import Banner from "./Components/imgs/BannerPrincipal2.svg";
+import styled from "styled-components";
 
-  referencia = createRef();
-  //utilizando uma referencia para poder usar o botao do header para rolar a pagina ate essa area de referencia
+const TesteImagem = styled.div`
+  background-image: url(${Banner});
+  height: 610px;
 
-  adicionarPostagem = (novaPostagem) => {
-    const novaPostagemComId = {
-      ...novaPostagem,
-      id: Math.random(),
-      //aqui estamos gerando novas postagens com id random garantindo que nao tenha ids iguais
-    };
-    this.setState((post) => ({
-      postagens: [...post.postagens, novaPostagemComId],
-    }));
-  };
+  background-position: center;
+`;
 
-  
-  deletarPostagem = (id) => {
-    this.setState((postagem) => ({
-      postagens: postagem.postagens.filter((postagem) => postagem.id !== id),
-    }));
-  };
+const Teste1 = styled.div`
+  background-color: black;
+  margin-top: -10px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 43px;
+`;
 
+const Botao = styled.button`
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+class App extends React.Component {
   render() {
     return (
-      <Main>
-        <Header Referencia={this.referencia} />
-        <Banner adicionarPostagem={this.adicionarPostagem} />
-        <ListaPostagens
-          postagens={this.state.postagens}
-          referencia={this.referencia}
-          Deletar={this.deletarPostagem}
-        />
-      </Main>
+      <div>
+        <Header />
+        <TesteImagem />
+
+        <Teste1>
+          <Botao>Personagens</Botao>
+        </Teste1>
+      </div>
     );
   }
 }
