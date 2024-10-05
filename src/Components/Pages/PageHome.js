@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import React from "react";
 import Header from "../Header/Header";
-import Banner from "../imgs/BannerPrincipal2.svg";
-const TesteImagem = styled.div`
-  background-image: url(${Banner});
-  height: 610px;
+import Banner from "../imgs/imgBannerHome.png";
 
-  background-position: center;
-`;
+const ImgBanner = styled.img `
+  display: flex;
+  justify-content: center;
+  width: 30%;
+`
 
 const Teste1 = styled.div`
   background-color: black;
@@ -20,10 +20,26 @@ const Teste1 = styled.div`
 `;
 
 const Botao = styled.button`
-  padding: 10px;
-  border-radius: 4px;
+  color: white;
+  padding: 1rem 3rem;
+  border: 2px  solid white;
+  border-radius: 8px;
+  background-color: transparent;
   cursor: pointer;
+
+  &:hover{
+    color: white;
+    background-color: #319956;
+    border: 2px solid #319956;
+  }
 `;
+
+const ImgDestaque = styled.div `
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+`
 
 
 class PageHome extends React.Component{
@@ -32,7 +48,10 @@ class PageHome extends React.Component{
         return (
           <div>
             <Header />
-            <TesteImagem />
+
+            <ImgDestaque>
+              <ImgBanner src= {Banner}/>
+            </ImgDestaque>
     
             <Teste1>
               <Botao onClick={this.props.changePage}>Personagens</Botao>
@@ -40,4 +59,6 @@ class PageHome extends React.Component{
           </div>
         );
       }
-}export default PageHome;
+}
+
+export default PageHome;

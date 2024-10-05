@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 import styled from "styled-components";
 
 const Teste = styled.div`
-  background-color: #1a1a1a;
   display: grid;
   grid-template-columns: repeat(4, 18rem);
   gap: 30px;
