@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import Header from "../Header/Header"; 
+import Header from "../Header/Header";
 import styled from "styled-components";
 
 const Teste = styled.div`
@@ -73,7 +73,12 @@ const Circle = styled.span`
 export class Personagens extends React.Component {
   state = {
     characters: [],
+    pesquisa: ""
   };
+
+  onChangePesquisa = (e) => {
+    this.setState({ pesquisa: e.target.value })
+  }
 
   componentDidMount() {
     this.pegarPersonagens();
@@ -95,7 +100,11 @@ export class Personagens extends React.Component {
   };
 
   render() {
-    const renderizarCharacter = this.state.characters.map((c) => {
+    const filteredCharacters = this.state.characters.filter((c) =>
+      c.name.toLowerCase().includes(this.state.pesquisa.toLowerCase())
+    );//converter tudo inserindo no input para minusculo pra não dar conflito na pesquisa
+
+    const renderizarCharacter = filteredCharacters.map((c) => {
       return (
         <Card key={c.id}>
           <img src={c.image} alt="Imagem personagem" />
@@ -116,8 +125,16 @@ export class Personagens extends React.Component {
     return (
       <>
         <Header />
+
+        <input
+          name="pesquisa"
+          placeholder="Buscar personagem"
+          onChange={this.onChangePesquisa}
+          value={this.state.pesquisa}
+        />
+
         <Teste>{renderizarCharacter}</Teste>
       </>
     );
   }
-}export default Personagens;
+} export default Personagens;
