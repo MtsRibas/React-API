@@ -4,6 +4,8 @@
 
 Este projeto é uma aplicação de frontend desenvolvida em React, com o objetivo de listar e filtrar personagens da API pública de Rick and Morty. O usuário pode navegar pela lista de personagens, realizar buscas, aplicar filtros por status e obter mais informações sobre cada personagem.
 
+## link: // lembrar de colocar o link aqui
+
 ## Funcionalidades
 
 
@@ -51,6 +53,13 @@ https://rickandmortyapi.com/api/character
 Essa API foi escolhinda e utilizada por seu fácil acesso sem a necessidade de uma autenticação, haja vista também que ela se encontrava ao meio de 
 alguma das opções que o professor nos disponibilizou.
 
-## License
+## Licença 
 
+Este projeto está licenciado sob a Licença MIT. Isso significa que você é livre para usar, modificar e distribuir o projeto, desde que mantenha o aviso de copyright e a licença originais anexados. Para mais detalhes, consulte o arquivo LICENSE no repositório.
+
+### Desenvolvido por:
+
+Gabriel Cunha
+Matheus Ribas
+Micael Ferrari
 
