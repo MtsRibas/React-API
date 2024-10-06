@@ -36,15 +36,3 @@ export const Infos = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 `;
-export const TelaLoading = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-`;
-export const Loading = styled.img`
-  width: 400px;
-  margin-bottom: 20px;
-`;

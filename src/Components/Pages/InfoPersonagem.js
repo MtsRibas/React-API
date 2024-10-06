@@ -37,15 +37,6 @@ class InfoPersonagens extends React.Component {
   render() {
     const { character, isLoading } = this.state;
 
-    if (isLoading) {
-      return (
-        <TelaLoading>
-          <Loading src={Carregar} alt="Carregando" />
-          <p>Carregando Personagem</p>
-        </TelaLoading>
-      );
-    }
-
     if (!character) {
       return <p>Acho que esse Personagem não existe</p>;
     }
