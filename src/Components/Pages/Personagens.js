@@ -2,6 +2,8 @@ import axios from "axios";
 import React from "react";
 import Header from "../Header/Header";
 import InfoPersonagens from "./InfoPersonagem";
+import Foto from "../imgs/banner.png";
+import Carregar from "../imgs/Loading.gif";
 import {
   Busca,
   DivPesquisa,
@@ -17,7 +19,9 @@ import {
   Filtros,
   Opcoes,
   PesquisaFiltro,
-  TituloSection
+  FotoRick,
+  Loading,
+  TelaLoading,
 } from "../styles/PersonagensStyles";
 
 export class Personagens extends React.Component {
@@ -26,6 +30,7 @@ export class Personagens extends React.Component {
     pesquisa: "",
     selecionarPersonagemPorId: null,
     filtros: "",
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -33,6 +38,7 @@ export class Personagens extends React.Component {
   }
 
   pegarPersonagens = async () => {
+    this.setState({ isLoading: true });
     try {
       let allCharacters = [];
       let page = 1;
@@ -47,9 +53,10 @@ export class Personagens extends React.Component {
         page++;
       }
 
-      this.setState({ characters: allCharacters });
+      this.setState({ characters: allCharacters, isLoading: false }); 
     } catch (err) {
       console.log(err.message);
+      this.setState({ isLoading: false }); 
     }
   };
 
@@ -69,8 +76,13 @@ export class Personagens extends React.Component {
   };
 
   render() {
-    const { characters, pesquisa, selecionarPersonagemPorId, filtros } =
-      this.state;
+    const {
+      characters,
+      pesquisa,
+      selecionarPersonagemPorId,
+      filtros,
+      isLoading,
+    } = this.state;
 
     if (selecionarPersonagemPorId) {
       return (
@@ -81,6 +93,15 @@ export class Personagens extends React.Component {
             voltarParaLista={this.voltarParaLista}
           />
         </>
+      );
+    }
+
+    if (isLoading) {
+      return (
+        <TelaLoading>
+          <Loading src={Carregar} alt="Carregando" />
+          <p>Carregando Personagens</p>
+        </TelaLoading>
       );
     }
 
@@ -101,7 +122,7 @@ export class Personagens extends React.Component {
 
     const renderizarCharacter = filteredCharacters.map((c) => {
       return (
-        <Card key={c.id}>
+        <Card key={c.id} onClick={() => this.selecionarPersonagem(c.id)}>
           <img src={c.image} alt={c.name} />
           <DivInfo>
             <DadosPersonagem>
@@ -112,7 +133,7 @@ export class Personagens extends React.Component {
               </CharacterStatus>
             </DadosPersonagem>
             <LinkInfo onClick={() => this.selecionarPersonagem(c.id)}>
-              More info
+              Saiba Mais
             </LinkInfo>
           </DivInfo>
         </Card>
@@ -122,7 +143,7 @@ export class Personagens extends React.Component {
     return (
       <>
         <Header />
-        <TituloSection>Personagens</TituloSection>
+        <FotoRick src={Foto} alt="Foto banner" />
         <PesquisaFiltro>
           <DivPesquisa>
             <Busca>Buscar</Busca>
@@ -140,7 +161,6 @@ export class Personagens extends React.Component {
             <Opcoes value="Desconhecido">Desconhecido</Opcoes>
           </Filtros>
         </PesquisaFiltro>
-        
 
         <DivPersonagens>{renderizarCharacter}</DivPersonagens>
       </>
