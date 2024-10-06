@@ -5,10 +5,9 @@ import {
   BotaoVoltar,
   NomePerso,
   Infos,
-  TelaLoading,
-  Loading,
+  
 } from "../styles/InfoPersonagemStyles";
-import Carregar from "../imgs/Loading.gif";
+
 
 class InfoPersonagens extends React.Component {
   state = {
@@ -35,7 +34,7 @@ class InfoPersonagens extends React.Component {
   };
 
   render() {
-    const { character, isLoading } = this.state;
+    const { character, } = this.state;
 
     if (!character) {
       return <p>Acho que esse Personagem não existe</p>;
