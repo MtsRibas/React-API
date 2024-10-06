@@ -1,18 +1,26 @@
 import React from "react";
 import Header from "../Header/Header";
-import { TesteImagem, Teste1, Botao } from "../styles/PageHomeStyles";
 import Banner from "../imgs/imgBannerHome.png";
+import {
+  ImgDestaque,
+  ImgBanner,
+  DivBotao,
+  Botao,
+} from "../styles/PageHomeStyles";
 
 class PageHome extends React.Component {
   render() {
     return (
       <div>
         <Header />
-        <TesteImagem banner={Banner} />
-        
-        <Teste1>
+
+        <ImgDestaque>
+          <ImgBanner src={Banner} />
+        </ImgDestaque>
+
+        <DivBotao>
           <Botao onClick={this.props.changePage}>Personagens</Botao>
-        </Teste1>
+        </DivBotao>
       </div>
     );
   }

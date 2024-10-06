@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../imgs/image 3.png";
-import { HEADER, Lista, Link } from "../styles/HeaderStyles"
+import { HEADER, Menu, LinkMenu } from "../styles/HeaderStyles";
 
 class Header extends React.Component {
   render() {
@@ -8,11 +8,14 @@ class Header extends React.Component {
       <>
         <HEADER>
           <img src={logo} alt="teste"></img>
-          <Lista>
+          <Menu>
             <li>
-              <Link href="/">Personagens</Link>
+              <LinkMenu href="/">Home</LinkMenu>
             </li>
-          </Lista>
+            <li>
+              <LinkMenu href="/">Personagens</LinkMenu>
+            </li>
+          </Menu>
         </HEADER>
       </>
     );

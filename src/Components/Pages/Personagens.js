@@ -1,32 +1,48 @@
 import axios from "axios";
 import React from "react";
 import Header from "../Header/Header";
-import { Teste, Card, P, Div, Div2, CharacterName, CharacterStatus, Circle } from "../styles/PersonagensStyles"; 
+import InfoPersonagens from "./InfoPersonagem";
+import {
+  Busca,
+  DivPesquisa,
+  InputPesquisa,
+  DivPersonagens,
+  Card,
+  LinkInfo,
+  DivInfo,
+  DadosPersonagem,
+  CharacterName,
+  CharacterStatus,
+  Circle,
+  Filtros,
+  Opcoes,
+} from "../styles/PersonagensStyles";
 
 export class Personagens extends React.Component {
   state = {
-    characters: [], 
+    characters: [],
     pesquisa: "",
+    selecionarPersonagemPorId: null,
+    filtros: "",
   };
 
   componentDidMount() {
-    // Carrega os dados para serem exibidos na página logo que ela inicia
-    this.pegarPersonagens(); 
+    this.pegarPersonagens();
   }
 
   pegarPersonagens = async () => {
     try {
-      let allCharacters = []; 
+      let allCharacters = [];
       let page = 1;
-      let NextPage = true; 
+      let NextPage = true;
 
       while (NextPage) {
-        // Enquanto tem mais páginas, ele adiciona no vetor de caracteres
-        const resposta = await axios.get(`https://rickandmortyapi.com/api/character?page=${page}`);
-        allCharacters = [...allCharacters, ...resposta.data.results]; 
-        // Verifica próxima página
-        NextPage = !!resposta.data.info.next; 
-        page++; 
+        const resposta = await axios.get(
+          `https://rickandmortyapi.com/api/character?page=${page}`
+        );
+        allCharacters = [...allCharacters, ...resposta.data.results];
+        NextPage = !!resposta.data.info.next;
+        page++;
       }
 
       this.setState({ characters: allCharacters });
@@ -36,31 +52,67 @@ export class Personagens extends React.Component {
   };
 
   onChangePesquisa = (e) => {
-    this.setState({ pesquisa: e.target.value }); 
-  }; // Adicionado ponto e vírgula aqui
+    this.setState({ pesquisa: e.target.value });
+  };
+
+  selecionarPersonagem = (id) => {
+    this.setState({ selecionarPersonagemPorId: id });
+  };
+
+  voltarParaLista = () => {
+    this.setState({ selecionarPersonagemPorId: null });
+  };
+  onChangeFiltro = (e) => {
+    this.setState({ filtros: e.target.value });
+  };
 
   render() {
-    const { characters, pesquisa } = this.state;
+    const { characters, pesquisa, selecionarPersonagemPorId, filtros } =
+      this.state;
 
-    const filteredCharacters = characters.filter((c) =>
-      // Converter tudo inserindo no input para minúsculo para não dar conflito na pesquisa
-      c.name.toLowerCase().includes(pesquisa.toLowerCase())
-    );
+    if (selecionarPersonagemPorId) {
+      return (
+        <>
+          <Header />
+          <InfoPersonagens
+            id={selecionarPersonagemPorId}
+            voltarParaLista={this.voltarParaLista}
+          />
+        </>
+      );
+    }
+
+    const filteredCharacters = characters
+      .filter((c) => c.name.toLowerCase().includes(pesquisa.toLowerCase()))
+      .filter((c) => {
+        if (filtros === "Vivos") {
+          return c.status === "Alive";
+        }
+        if (filtros === "Mortos") {
+          return c.status === "Dead";
+        }
+        if (filtros === "Desconhecido") {
+          return c.status === "unknown";
+        }
+        return true;
+      });
 
     const renderizarCharacter = filteredCharacters.map((c) => {
       return (
         <Card key={c.id}>
           <img src={c.image} alt={c.name} />
-          <Div>
-            <Div2>
+          <DivInfo>
+            <DadosPersonagem>
               <CharacterName>{c.name}</CharacterName>
               <CharacterStatus>
                 <Circle status={c.status} />
                 {c.status}
               </CharacterStatus>
-            </Div2>
-            <P>More info</P>
-          </Div>
+            </DadosPersonagem>
+            <LinkInfo onClick={() => this.selecionarPersonagem(c.id)}>
+              More info
+            </LinkInfo>
+          </DivInfo>
         </Card>
       );
     });
@@ -68,15 +120,23 @@ export class Personagens extends React.Component {
     return (
       <>
         <Header />
+        <DivPesquisa>
+          <Busca>Search</Busca>
+          <InputPesquisa
+            name="pesquisa"
+            placeholder="Buscar personagem"
+            onChange={this.onChangePesquisa}
+            value={pesquisa}
+          />
+        </DivPesquisa>
+        <Filtros onChange={this.onChangeFiltro} value={filtros}>
+          <Opcoes value="">Selecione um filtro</Opcoes>
+          <Opcoes value="Vivos">Vivos</Opcoes>
+          <Opcoes value="Mortos">Mortos</Opcoes>
+          <Opcoes value="Desconhecido">Desconhecido</Opcoes>
+        </Filtros>
 
-        <input
-          name="pesquisa"
-          placeholder="Buscar personagem"
-          onChange={this.onChangePesquisa}
-          value={pesquisa}
-        />
-
-        <Teste>{renderizarCharacter}</Teste>
+        <DivPersonagens>{renderizarCharacter}</DivPersonagens>
       </>
     );
   }

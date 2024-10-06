@@ -1,15 +1,12 @@
-import React from "react";
 import styled from "styled-components";
-import Banner from "../imgs/BannerPrincipal2.svg";
 
-export const TesteImagem = styled.div`
-  background-image: url(${Banner});
-  height: 610px;
-
-  background-position: center;
+export const ImgBanner = styled.img`
+  display: flex;
+  justify-content: center;
+  width: 30%;
 `;
 
-export const Teste1 = styled.div`
+export const DivBotao = styled.div`
   background-color: black;
   margin-top: -10px;
   padding: 0;
@@ -20,7 +17,23 @@ export const Teste1 = styled.div`
 `;
 
 export const Botao = styled.button`
-  padding: 10px;
-  border-radius: 4px;
+  color: white;
+  padding: 1rem 3rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: transparent;
   cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: #319956;
+    border: 2px solid #319956;
+  }
+`;
+
+export const ImgDestaque = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
 `;
