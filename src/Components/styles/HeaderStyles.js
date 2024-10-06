@@ -19,3 +19,6 @@ export const LinkMenuAtual = styled.a`
     border-bottom: 2px solid #319956;
   }
 `;
+export const Foto = styled.img`
+  height: 50px;
+`;
