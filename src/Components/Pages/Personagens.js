@@ -1,74 +1,7 @@
 import axios from "axios";
 import React from "react";
 import Header from "../Header/Header";
-import styled from "styled-components";
-
-const Teste = styled.div`
-  background-color: #1a1a1a;
-  display: grid;
-  grid-template-columns: repeat(4, 18rem);
-  gap: 30px;
-  justify-content: center;
-`;
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  color: #ffffff;
-  padding: 10px;
-`;
-
-const P = styled.a`
-  color: #aeaeae;
-  text-decoration: underline;
-  /* font-size: 10px; */
-  display: flex;
-  flex-direction: row;
-  font-size: 10px;
-  cursor: pointer;
-  padding: 10px;
-`;
-
-const Div = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100%;
-`;
-
-const Div2 = styled.div`
-  display: flex;
-  gap: 10px;
-
-  margin-right: 40px;
-  align-items: center;
-`;
-
-const CharacterName = styled.p`
-  margin: 0;
-  color: #ffffff;
-`;
-
-const CharacterStatus = styled.p`
-  margin: 0;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-`;
-
-const Circle = styled.span`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: ${(props) => {
-    if (props.status === "Alive") return "green";
-    if (props.status === "Dead") return "red";
-    return "gray";
-  }};
-  margin-right: 5px;
-`;
+import { Teste, Card, P, Div, Div2, CharacterName, CharacterStatus, Circle } from "../styles/PersonagensStyles"; 
 
 export class Personagens extends React.Component {
   state = {
@@ -79,6 +12,10 @@ export class Personagens extends React.Component {
   onChangePesquisa = (e) => {
     this.setState({ pesquisa: e.target.value })
   }
+
+  /*onClickProximaPagina = () =>{
+    this.setState({characters : })
+  }*/  
 
   componentDidMount() {
     this.pegarPersonagens();
@@ -107,7 +44,7 @@ export class Personagens extends React.Component {
     const renderizarCharacter = filteredCharacters.map((c) => {
       return (
         <Card key={c.id}>
-          <img src={c.image} alt="Imagem personagem" />
+          <img src={c.image} alt={c.name} />
           <Div>
             <Div2>
               <CharacterName>{c.name}</CharacterName>
@@ -134,6 +71,7 @@ export class Personagens extends React.Component {
         />
 
         <Teste>{renderizarCharacter}</Teste>
+        {/*<button onClick={onClickProximaPagina}>Próxima página</button>*/}  
       </>
     );
   }
