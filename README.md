@@ -4,7 +4,7 @@
 
 Este projeto é uma aplicação de frontend desenvolvida em React, com o objetivo de listar e filtrar personagens da API pública de Rick and Morty. O usuário pode navegar pela lista de personagens, realizar buscas, aplicar filtros por status e obter mais informações sobre cada personagem.
 
-## link: // lembrar de colocar o link aqui
+## link: https://rickandmortytrab.netlify.app
 
 ## Funcionalidades
 
