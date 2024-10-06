@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Tudo, BotaoVoltar } from "../styles/InfoPersonagemStyles";
+import { Tudo, BotaoVoltar, NomePerso, Infos } from "../styles/InfoPersonagemStyles";
 
 class InfoPersonagens extends React.Component {
   state = {
@@ -33,14 +33,17 @@ class InfoPersonagens extends React.Component {
 
     return (
       <Tudo>
-        <h2>{character.name}</h2>
         <img src={character.image} alt={character.name} />
-        <p>Status: {character.status}</p>
-        <p>Species: {character.species}</p>
-        <p>Gender: {character.gender}</p>
-        <p>Origin: {character.origin.name}</p>
-        <p>Location: {character.location.name}</p>
-        <BotaoVoltar onClick={this.props.voltarParaLista}>Voltar</BotaoVoltar>
+        <Infos>
+          <NomePerso>{character.name}</NomePerso>
+          <p>Status: {character.status}</p>
+          <p>Species: {character.species}</p>
+          <p>Gender: {character.gender}</p>
+          <p>Origin: {character.origin.name}</p>
+          <p>Location: {character.location.name}</p>
+          <BotaoVoltar onClick={this.props.voltarParaLista}>Voltar</BotaoVoltar>
+        </Infos>
+        
       </Tudo>
     );
   }

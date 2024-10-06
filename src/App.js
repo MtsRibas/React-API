@@ -2,6 +2,11 @@ import React from "react";
 
 import Personagens from "./Components/Pages/Personagens";
 import PageHome from "./Components/Pages/PageHome";
+import styled from "styled-components";
+
+const Main = styled.div`
+  padding: 5px 120px;
+`
 
 class App extends React.Component {
   state = {
@@ -17,7 +22,7 @@ class App extends React.Component {
       <PageHome changePage={this.changePage} />
     );
 
-    return <div>{page}</div>;
+    return <Main>{page}</Main>;
   }
 }
 

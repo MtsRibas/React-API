@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const DivPersonagens = styled.div`
-  background-color: black;
   display: grid;
-  grid-template-columns: repeat(4, 20%);
+  grid-template-columns: repeat(4, 23.5%);
   gap: 30px;
   justify-content: center;
 `;
@@ -13,7 +12,7 @@ export const Card = styled.div`
   flex-direction: column;
   border: 3px solid rgb(174, 174, 174, 20%);
   border-radius: 4px;
-  color: #ffffff;
+  color: white;
   padding: 10px;
 `;
 
@@ -72,27 +71,46 @@ export const InputPesquisa = styled.input`
   background-color: transparent;
   color: #696969;
   border: 1px solid #aeaeae;
-  height: 30px;
-  padding-right: 20%;
-  border-radius: 5px;
+  height: 2rem;
+  padding: 0 2rem 0 1rem;
+  border-radius: 8px;
 `;
 export const DivPesquisa = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
-  padding-left: 8%;
+  gap: 1rem;
+
 `;
 
 export const Busca = styled.p`
   color: white;
-  padding-right: 1%;
 `;
 
 export const Filtros = styled.select`
+  padding: 0.6rem;
   background-color: transparent;
   color: white;
-  border-color: 1px solid green;
+  border: transparent;
+  border-bottom: 2px solid white;
+  ::selection{
+    border: none;
+  }
 `;
 export const Opcoes = styled.option`
-  background-color: red;
+  background-color: black;
 `;
+
+export const PesquisaFiltro = styled.div `
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+`
+
+export const TituloSection = styled.p`
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 60px;
+`

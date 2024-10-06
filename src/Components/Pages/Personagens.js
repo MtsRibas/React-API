@@ -16,6 +16,8 @@ import {
   Circle,
   Filtros,
   Opcoes,
+  PesquisaFiltro,
+  TituloSection
 } from "../styles/PersonagensStyles";
 
 export class Personagens extends React.Component {
@@ -120,21 +122,25 @@ export class Personagens extends React.Component {
     return (
       <>
         <Header />
-        <DivPesquisa>
-          <Busca>Search</Busca>
-          <InputPesquisa
-            name="pesquisa"
-            placeholder="Buscar personagem"
-            onChange={this.onChangePesquisa}
-            value={pesquisa}
-          />
-        </DivPesquisa>
-        <Filtros onChange={this.onChangeFiltro} value={filtros}>
-          <Opcoes value="">Selecione um filtro</Opcoes>
-          <Opcoes value="Vivos">Vivos</Opcoes>
-          <Opcoes value="Mortos">Mortos</Opcoes>
-          <Opcoes value="Desconhecido">Desconhecido</Opcoes>
-        </Filtros>
+        <TituloSection>Personagens</TituloSection>
+        <PesquisaFiltro>
+          <DivPesquisa>
+            <Busca>Buscar</Busca>
+            <InputPesquisa
+              name="pesquisa"
+              placeholder="Nome do personagem"
+              onChange={this.onChangePesquisa}
+              value={pesquisa}
+            />
+          </DivPesquisa>
+          <Filtros onChange={this.onChangeFiltro} value={filtros}>
+            <Opcoes value="">Selecione um filtro</Opcoes>
+            <Opcoes value="Vivos">Vivos</Opcoes>
+            <Opcoes value="Mortos">Mortos</Opcoes>
+            <Opcoes value="Desconhecido">Desconhecido</Opcoes>
+          </Filtros>
+        </PesquisaFiltro>
+        
 
         <DivPersonagens>{renderizarCharacter}</DivPersonagens>
       </>

@@ -37,3 +37,5 @@ export const ImgDestaque = styled.div`
   justify-content: center;
   margin-bottom: 3rem;
 `;
+
+
