@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Components/Header/Header";
-import Banner from "./Components/imgs/BannerPrincipal2.svg";
 import  Personagens  from "./Components/Pages/Personagens";
 import PageHome from "./Components/Pages/PageHome"
 
