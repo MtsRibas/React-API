@@ -50,7 +50,7 @@ https://rickandmortyapi.com/api/character
 
 ## Porque utilizmos essa API ?
 
-Essa API foi escolhinda e utilizada por seu fácil acesso sem a necessidade de uma autenticação, haja vista também que ela se encontrava ao meio de 
+Essa API foi escolhida e utilizada por seu fácil acesso sem a necessidade de uma autenticação, haja vista também que ela se encontrava ao meio de 
 alguma das opções que o professor nos disponibilizou.
 
 ## Licença 
