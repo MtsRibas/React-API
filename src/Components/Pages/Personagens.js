@@ -31,6 +31,7 @@ export class Personagens extends React.Component {
     selecionarPersonagemPorId: null,
     filtros: "",
     isLoading: false,
+    erroCarregamento: null, // Para tratar erros de carregamento
   };
 
   componentDidMount() {
@@ -38,7 +39,7 @@ export class Personagens extends React.Component {
   }
 
   pegarPersonagens = async () => {
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, erroCarregamento: null }); // resetar erro ao iniciar a requisição
     try {
       let allCharacters = [];
       let page = 1;
@@ -53,10 +54,14 @@ export class Personagens extends React.Component {
         page++;
       }
 
-      this.setState({ characters: allCharacters, isLoading: false }); 
+      this.setState({ characters: allCharacters, isLoading: false });
     } catch (err) {
-      console.log(err.message);
-      this.setState({ isLoading: false }); 
+      // Capturar erro e exibir mensagem amigável
+      console.error("Erro ao carregar personagens:", err.message);
+      this.setState({
+        isLoading: false,
+        erroCarregamento: "Falha ao carregar os personagens. Tente novamente mais tarde.",
+      });
     }
   };
 
@@ -71,6 +76,7 @@ export class Personagens extends React.Component {
   voltarParaLista = () => {
     this.setState({ selecionarPersonagemPorId: null });
   };
+
   onChangeFiltro = (e) => {
     this.setState({ filtros: e.target.value });
   };
@@ -82,6 +88,7 @@ export class Personagens extends React.Component {
       selecionarPersonagemPorId,
       filtros,
       isLoading,
+      erroCarregamento, // Adiciona o estado de erro
     } = this.state;
 
     if (selecionarPersonagemPorId) {
@@ -105,8 +112,17 @@ export class Personagens extends React.Component {
       );
     }
 
+    if (erroCarregamento) {
+      return (
+        <TelaLoading>
+          <p>{erroCarregamento}</p> 
+        </TelaLoading>
+      );
+    }
+
+    
     const filteredCharacters = characters
-      .filter((c) => c.name.toLowerCase().includes(pesquisa.toLowerCase()))
+      .filter((c) => c.name.toLowerCase().includes(pesquisa.toLowerCase())) 
       .filter((c) => {
         if (filtros === "Vivos") {
           return c.status === "Alive";
