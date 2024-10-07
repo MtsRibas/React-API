@@ -9,6 +9,7 @@ export const Menu = styled.ul`
   list-style: none;
   display: flex;
   gap: 2rem;
+  padding-top:1rem;
 `;
 
 export const LinkMenuAtual = styled.a`
